@@ -1,8 +1,9 @@
 "use client";
-import { selectTodos, add } from "@/features/todos/todosSlice";
+import { selectTodos, add, update, remove, Todo } from "@/features/todos/todosSlice";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./todos.module.css";
 import { useState } from "react";
+import { Pencil, Trash2 } from "lucide-react";
 export default function Todos() {
   const dispatch = useDispatch();
   const todos = useSelector(selectTodos);
@@ -13,6 +14,15 @@ export default function Todos() {
     dispatch(add({ title, id: crypto.randomUUID(), completed: false }));
     setTitle("");
   }
+
+  function editTodo(todo: Todo) {
+    dispatch(update(todo));
+  }
+
+  function deleteTodo(id: string) {
+    dispatch(remove(id));
+  }
+
   return (
     <div>
       <h1 className={styles.title}>ToDo Tasks for Sparta</h1>
@@ -27,7 +37,19 @@ export default function Todos() {
       {todos.length > 0 && (
         <ul>
           {todos.map((todo) => (
-            <li key={todo.id}>{todo.title}</li>
+            <li key={todo.id}>
+              {todo.title}{" "}
+              <Pencil
+                className={styles.pointer}
+                onClick={() => editTodo({...todo, title: 'hola'})}
+                key={`edit-${todo.id}`}
+              />
+              <Trash2
+                className={styles.pointer}
+                onClick={() => deleteTodo(todo.id)}
+                key={`delete-${todo.id}`}
+              />
+            </li>
           ))}
         </ul>
       )}

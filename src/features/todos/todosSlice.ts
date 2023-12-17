@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface Todo {
+export interface Todo {
     id: string;
     title: string;
     completed: boolean;
@@ -24,7 +24,7 @@ const todosSlice = createSlice({
         update: (state, action: PayloadAction<Todo>) => {
             const todoIndex = state.todos.findIndex(todo => todo.id === action.payload.id);
             if (todoIndex !== -1) {
-                state.todos.with(todoIndex, action.payload)
+                state.todos[todoIndex] = action.payload;
             }
         },
         toggle: (state, action: PayloadAction<string>) => {
