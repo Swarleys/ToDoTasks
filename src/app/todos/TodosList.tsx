@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { selectTodos } from "@/features/todos/todosSlice";
 import TodoItem from "./TodoItem";
 import { useState } from "react";
+import styles from './TodosList.module.css';
 
 function TodosList() {
   const todos = useSelector(selectTodos);
@@ -15,7 +16,7 @@ function TodosList() {
 
   return (
     <>
-      <ul>
+      <ul className={styles.ul}>
         {todos.map((todo) => (
           <TodoItem todo={todo} key={todo.id} />
         ))}

@@ -1,0 +1,54 @@
+.form {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    max-width: 600px;
+}
+
+.input {
+    all: unset;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: black;
+    box-shadow: 0 0 0 1px black;
+    flex-grow: 1;
+    padding: 0 10px;
+    height: 35px;
+    line-height: 1;
+}
+
+.input:hover,
+.input:focus {
+    box-shadow: 0 0 0 2px black;
+}
+
+
+.button {
+    all: unset;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 0 16px;
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 500;
+    height: 35px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+.button:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
