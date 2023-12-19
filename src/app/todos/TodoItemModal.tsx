@@ -18,7 +18,7 @@ const TodoItemModal = ({ todo }: TodoItemProps) => {
   return (
     <Dialog.Root onOpenChange={() => setNewTask(todo.task)}>
       <Dialog.Trigger asChild>
-        <Pencil className={styles.pointer} />
+        <Pencil className={styles.pointer} size={20} />
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.dialog_overlay} />
@@ -36,17 +36,13 @@ const TodoItemModal = ({ todo }: TodoItemProps) => {
               setNewTask(e.target.value)
             }
           />
-          <div
-            style={{
-              display: "flex",
-              marginTop: 25,
-              justifyContent: "flex-end",
-            }}
+          <div className={styles.button_wrapper}
           >
             <Dialog.Close asChild>
               <button
                 onClick={() => updateTodo({ ...todo, task: newTask })}
                 className={styles.button}
+                disabled={!newTask}
               >
                 Update Todo
               </button>

@@ -21,24 +21,29 @@ const TodoItem = ({ todo }: TodoItemProps) => {
   return (
     <>
       <li className={`${styles.list} ${styles.flex}`}>
-        <Checkbox.Root
-          className={`${styles.pointer} ${styles["checkbox-root"]} `}
-          checked={todo.completed}
-          onCheckedChange={() => toggleTodo(todo.id)}
-          id={todo.id}
-        >
-          <Checkbox.Indicator>
-            <CheckIcon />
-          </Checkbox.Indicator>
-        </Checkbox.Root>
-        <label className={styles.label} htmlFor={todo.id}>
-          <p>{todo.task}</p>
-        </label>
-        <TodoItemModal todo={todo} />
-        <Trash2
-          className={styles.pointer}
-          onClick={() => deleteTodo(todo.id)}
-        />
+        <div className={styles.flex}>
+          <Checkbox.Root
+            className={`${styles.pointer} ${styles["checkbox-root"]} `}
+            checked={todo.completed}
+            onCheckedChange={() => toggleTodo(todo.id)}
+            id={todo.id}
+          >
+            <Checkbox.Indicator>
+              <CheckIcon />
+            </Checkbox.Indicator>
+          </Checkbox.Root>
+          <label className={styles.label} htmlFor={todo.id}>
+            <p>{todo.task}</p>
+          </label>
+        </div>
+        <div className={styles.icons_container}>
+          <TodoItemModal todo={todo} />
+          <Trash2
+            className={styles.pointer}
+            onClick={() => deleteTodo(todo.id)}
+            size={20}
+          />
+        </div>
       </li>
     </>
   );
