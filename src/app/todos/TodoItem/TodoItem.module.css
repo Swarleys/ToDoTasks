@@ -24,7 +24,7 @@
   border: 1px solid green;
 }
 
-.checkbox-root[data-state="checked"] + label {
+.checkbox-root[data-state="checked"] + label > p {
   text-decoration: line-through;
   color: green;
 }

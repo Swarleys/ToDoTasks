@@ -3,7 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import styles from "./TodoItemModal.module.css";
 import { Pencil } from "lucide-react";
-import { TodoItemProps } from "./TodoItem";
+import { TodoItemProps } from "../TodoItem/TodoItem";
 import { useDispatch } from "react-redux";
 import { update, Todo } from "@/features/todos/todosSlice";
 
@@ -18,7 +18,7 @@ const TodoItemModal = ({ todo }: TodoItemProps) => {
   return (
     <Dialog.Root onOpenChange={() => setNewTask(todo.task)}>
       <Dialog.Trigger asChild>
-        <Pencil className={styles.pointer} size={20} color="#2563EB" />
+        <Pencil className={styles.pointer} size={20} color="#2563EB" aria-label="edit todo"/>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.dialog_overlay} />

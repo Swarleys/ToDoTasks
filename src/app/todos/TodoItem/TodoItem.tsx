@@ -6,7 +6,7 @@ import { CheckIcon } from "@radix-ui/react-icons";
 import { Trash2 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import styles from "./TodoItem.module.css";
-import TodoItemModal from "./TodoItemModal";
+import TodoItemModal from "../TodoItemModal/TodoItemModal";
 
 export interface TodoItemProps {
   todo: Todo;
@@ -43,6 +43,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
             onClick={() => deleteTodo(todo.id)}
             size={20}
             color="#DC2626"
+            aria-label="delete todo"
           />
         </div>
       </li>

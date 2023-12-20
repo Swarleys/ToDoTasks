@@ -18,7 +18,7 @@ function AddTodo() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <form onSubmit={handleSubmit} className={styles.form} name="form-task">
       <input
         value={task}
         onChange={(e: ChangeEvent<HTMLInputElement>) => setTask(e.target.value)}
@@ -26,6 +26,7 @@ function AddTodo() {
         type="text"
         id="task"
         className={styles.input}
+        name="input-task"
       />
       <button
         type="submit"
