@@ -3,7 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import styles from "./TodoItemModal.module.css";
 import { Pencil } from "lucide-react";
-import { TodoItemProps } from "./TodoItem";
+import { TodoItemProps } from "../TodoItem/TodoItem";
 import { useDispatch } from "react-redux";
 import { update, Todo } from "@/features/todos/todosSlice";
 
@@ -18,7 +18,13 @@ const TodoItemModal = ({ todo }: TodoItemProps) => {
   return (
     <Dialog.Root onOpenChange={() => setNewTask(todo.task)}>
       <Dialog.Trigger asChild>
-        <Pencil className={styles.pointer} size={20} color="#2563EB" />
+        <Pencil
+          className={styles.pointer}
+          size={20}
+          color="#2563EB"
+          aria-label="edit todo"
+          data-testid="edit-task"
+        />
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.dialog_overlay} />
@@ -35,6 +41,7 @@ const TodoItemModal = ({ todo }: TodoItemProps) => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setNewTask(e.target.value)
             }
+            data-testid="edit-task-input"
           />
           <div className={styles.button_wrapper}>
             <Dialog.Close asChild>
@@ -42,6 +49,7 @@ const TodoItemModal = ({ todo }: TodoItemProps) => {
                 onClick={() => updateTodo({ ...todo, task: newTask })}
                 className={styles.button}
                 disabled={!newTask}
+                data-testid="edit-task-button"
               >
                 Update Todo
               </button>

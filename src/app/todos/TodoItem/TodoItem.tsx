@@ -6,7 +6,7 @@ import { CheckIcon } from "@radix-ui/react-icons";
 import { Trash2 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import styles from "./TodoItem.module.css";
-import TodoItemModal from "./TodoItemModal";
+import TodoItemModal from "../TodoItemModal/TodoItemModal";
 
 export interface TodoItemProps {
   todo: Todo;
@@ -20,20 +20,21 @@ const TodoItem = ({ todo }: TodoItemProps) => {
 
   return (
     <>
-      <li className={`${styles.list} ${styles.flex}`}>
+      <li className={`${styles.list} ${styles.flex}`} data-testid="new-task">
         <div className={styles.flex}>
           <Checkbox.Root
             className={`${styles.pointer} ${styles["checkbox-root"]} `}
             checked={todo.completed}
             onCheckedChange={() => toggleTodo(todo.id)}
             id={todo.id}
+            data-testid="complete-task"
           >
             <Checkbox.Indicator>
               <CheckIcon color="#059669" />
             </Checkbox.Indicator>
           </Checkbox.Root>
           <label className={styles.label} htmlFor={todo.id}>
-            <p>{todo.task}</p>
+            <p data-testid="text-task">{todo.task}</p>
           </label>
         </div>
         <div className={styles.icons_container}>
@@ -43,6 +44,8 @@ const TodoItem = ({ todo }: TodoItemProps) => {
             onClick={() => deleteTodo(todo.id)}
             size={20}
             color="#DC2626"
+            aria-label="delete todo"
+            data-testid="delete-todo"
           />
         </div>
       </li>

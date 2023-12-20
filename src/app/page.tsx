@@ -2,7 +2,7 @@
 
 import * as Form from "@radix-ui/react-form";
 import styles from "./page.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SignJWT } from "jose";
 import { nanoid } from "nanoid";
@@ -11,6 +11,10 @@ import { getJwtSecretKey } from "@/lib/auth";
 export default function Login() {
   const [account, setAccount] = useState({ username: "", password: "" });
   const router = useRouter();
+
+  useEffect(() => {
+    localStorage.removeItem("todos");
+  }, []);
 
   async function handleOnSubmit(
     e:
@@ -52,6 +56,7 @@ export default function Login() {
               onChange={(e) =>
                 setAccount((prev) => ({ ...prev, username: e.target.value }))
               }
+              data-testid="username"
             />
           </Form.Control>
         </Form.Field>
@@ -71,6 +76,7 @@ export default function Login() {
               onChange={(e) =>
                 setAccount((prev) => ({ ...prev, password: e.target.value }))
               }
+              data-testid="password"
             />
           </Form.Control>
         </Form.Field>
@@ -79,6 +85,7 @@ export default function Login() {
             onClick={handleOnSubmit}
             className={styles.button}
             disabled={!account.username || !account.password}
+            data-testid="login"
           >
             Log in
           </button>

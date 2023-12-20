@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { load, selectTodos } from "@/features/todos/todosSlice";
-import TodoItem from "./TodoItem";
+import TodoItem from "../TodoItem/TodoItem";
 import styles from "./TodosList.module.css";
 import { useEffect } from "react";
 
