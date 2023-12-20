@@ -1,13 +1,11 @@
-"use client";
 import styles from "./HeaderTodos.module.css";
-import { useRouter } from "next/navigation";
 
 export default function HeaderTodos() {
-  const router = useRouter();
   function handleLogout() {
     const exp = Date.now();
     document.cookie = `user-token=; exp=${exp}; path=/;`;
-    router.push("/");
+    localStorage.removeItem("todos");
+    window.location.reload();
   }
 
   return (

@@ -21,15 +21,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border: 1px solid green;
 }
 
 .checkbox-root[data-state="checked"] + label {
   text-decoration: line-through;
+  color: green;
 }
 
 .checkbox-root:focus {
-  box-shadow: 0 0 0 1px black;
+  box-shadow: 0 0 0 1px green;
 }
 
 .label {

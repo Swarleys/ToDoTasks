@@ -1,18 +1,24 @@
-import { useSelector } from "react-redux";
-import { selectTodos } from "@/features/todos/todosSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { load, selectTodos } from "@/features/todos/todosSlice";
 import TodoItem from "./TodoItem";
-import { useState } from "react";
-import styles from './TodosList.module.css';
+import styles from "./TodosList.module.css";
+import { useEffect } from "react";
 
 function TodosList() {
   const todos = useSelector(selectTodos);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem("todos") || "[]");
+    dispatch(load(storedTodos));
+  }, [dispatch]);
 
   if (todos.length === 0) return null;
 
-  const notCompleted = `${
-    todos.filter((todo) => !todo.completed).length
-  } tasks left to do of ${todos.length}`;
+  const notCompleted = todos.filter((todo) => !todo.completed).length;
+
+  const notCompletedText = `${notCompleted} task${
+    notCompleted === 1 ? "" : "s"
+  } left to do of ${todos.length}`;
 
   return (
     <>
@@ -21,7 +27,7 @@ function TodosList() {
           <TodoItem todo={todo} key={todo.id} />
         ))}
       </ul>
-      <p>{notCompleted}</p>
+      <p>{notCompletedText}</p>
     </>
   );
 }
