@@ -12,7 +12,11 @@ export default function HeaderTodos() {
     <>
       <div className={styles.flex}>
         <h1 className={styles.title}>ToDo Tasks for Sparta</h1>
-        <button onClick={handleLogout} className={styles.logout}>
+        <button
+          onClick={handleLogout}
+          className={styles.logout}
+          data-testid="logout"
+        >
           Log out
         </button>
       </div>

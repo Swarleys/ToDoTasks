@@ -27,12 +27,14 @@ function AddTodo() {
         id="task"
         className={styles.input}
         name="input-task"
+        data-testid="input-task"
       />
       <button
         type="submit"
         onClick={handleSubmit}
         className={styles.button}
         disabled={!task}
+        data-testid="button-task"
       >
         Add
       </button>

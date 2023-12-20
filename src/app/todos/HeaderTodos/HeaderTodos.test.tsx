@@ -27,12 +27,15 @@ describe("HeaderTodos", () => {
     render(<HeaderTodos />);
 
     const titleElement = screen.getByText(/ToDo Tasks/i);
+    // @ts-ignore
     expect(titleElement).toBeInTheDocument();
     const buttonElement = screen.getByText(/Log out/i);
+    // @ts-ignore
     expect(buttonElement).toBeInTheDocument();
     fireEvent.click(buttonElement);
+    // @ts-ignore
     expect(document.cookie).toContain("user-token=;");
+    // @ts-ignore
     expect(window.location.reload).toHaveBeenCalled();
   });
-
 });
