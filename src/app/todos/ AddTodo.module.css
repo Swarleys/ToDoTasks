@@ -41,10 +41,10 @@
     line-height: 1;
     font-weight: 500;
     height: 35px;
-    border: 1px solid black;
-    cursor: pointer;
-    background-color: black;
-    color: white;
+  border: 1px solid #14532D;
+  cursor: pointer;
+  background-color: #86EFAC;
+  color: #14532D;
 }
 
 .button:disabled {

@@ -29,7 +29,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
             id={todo.id}
           >
             <Checkbox.Indicator>
-              <CheckIcon />
+              <CheckIcon color="#059669" />
             </Checkbox.Indicator>
           </Checkbox.Root>
           <label className={styles.label} htmlFor={todo.id}>
@@ -42,6 +42,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
             className={styles.pointer}
             onClick={() => deleteTodo(todo.id)}
             size={20}
+            color="#DC2626"
           />
         </div>
       </li>
