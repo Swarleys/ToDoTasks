@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { act } from 'react-dom/test-utils';
-
+import socket from '@/lib/socket';
 export interface Todo {
     id: string;
     task: string;
@@ -26,12 +25,14 @@ const todosSlice = createSlice({
         add: (state, action: PayloadAction<Todo>) => {
             state.todos.push(action.payload);
             localStorage.setItem('todos', JSON.stringify(state.todos));
+            socket.emit('addTodo', action.payload);
         },
         update: (state, action: PayloadAction<Todo>) => {
             const todoIndex = state.todos.findIndex(todo => todo.id === action.payload.id);
             if (todoIndex !== -1) {
                 state.todos[todoIndex] = action.payload;
                 localStorage.setItem('todos', JSON.stringify(state.todos));
+                socket.emit('updateTodo', action.payload);
             }
         },
         toggle: (state, action: PayloadAction<string>) => {
@@ -39,11 +40,13 @@ const todosSlice = createSlice({
             if (todo) {
                 todo.completed = !todo.completed;
                 localStorage.setItem('todos', JSON.stringify(state.todos));
+                socket.emit('toggleTodo', todo.id, todo.completed);
             }
         },
         remove: (state, action: PayloadAction<string>) => {
             state.todos = state.todos.filter(todo => todo.id !== action.payload);
             localStorage.setItem('todos', JSON.stringify(state.todos));
+            socket.emit('removeTodo', action.payload);
         },
         filter: (state, action: PayloadAction<string>) => {
             state.filterText = action.payload;
