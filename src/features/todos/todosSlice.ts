@@ -9,6 +9,7 @@ export interface Todo {
 
 interface TodosState {
     todos: Todo[];
+    filterText?: string;
 }
 
 const initialState: TodosState = {
@@ -44,11 +45,14 @@ const todosSlice = createSlice({
             state.todos = state.todos.filter(todo => todo.id !== action.payload);
             localStorage.setItem('todos', JSON.stringify(state.todos));
         },
+        filter: (state, action: PayloadAction<string>) => {
+            state.filterText = action.payload;
+        },
     },
 });
 
-export const { load, add, update, toggle, remove } = todosSlice.actions;
+export const { load, add, update, toggle, remove, filter } = todosSlice.actions;
 
-export const selectTodos = (state: { todos: TodosState }) => state.todos.todos;
+export const selectTodos = (state: { todos: TodosState }) => state.todos.todos.filter(todo => !state.todos.filterText || todo.task.includes(state.todos.filterText));
 
 export default todosSlice.reducer;
