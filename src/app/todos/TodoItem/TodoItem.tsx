@@ -53,4 +53,29 @@ const TodoItem = ({ todo }: TodoItemProps) => {
   );
 };
 
+export  const TodoSocketItem = ({ todo }: TodoItemProps) => {
+  return (
+    <>
+      <li className={`${styles.list} ${styles.flex}`} data-testid="new-task">
+        <div className={styles.flex}>
+          <Checkbox.Root
+            className={`${styles.pointer} ${styles["checkbox-root"]} `}
+            checked={todo.completed}
+            id={todo.id}
+            data-testid="complete-task"
+          >
+            <Checkbox.Indicator>
+              <CheckIcon color="#059669" />
+            </Checkbox.Indicator>
+          </Checkbox.Root>
+          <label className={styles.label} htmlFor={todo.id}>
+            <p data-testid="text-task">{todo.task}</p>
+          </label>
+        </div>
+      </li>
+    </>
+  );
+};
+
+
 export default TodoItem;
